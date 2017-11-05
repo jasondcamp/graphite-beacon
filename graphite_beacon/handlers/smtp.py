@@ -37,7 +37,7 @@ class SMTPHandler(AbstractHandler):
         LOGGER.debug("Handler (%s) %s", self.name, level)
 
         msg = self.get_message(level, *args, **kwargs)
-        msg['Subject'] = self.get_short(level, *args, **kwargs)
+        msg['Subject'] = self.get_subject(level, *args, **kwargs)
         msg['From'] = self.options['from']
         msg['To'] = ", ".join(self.options['to'])
 
