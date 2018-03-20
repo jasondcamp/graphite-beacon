@@ -47,6 +47,11 @@ class AbstractHandler(_.with_metaclass(HandlerMeta)):
         return tmpl.generate(
             level=level, reactor=self.reactor, alert=alert, value=value, target=target, playbook=playbook).strip()
 
+    def get_subject(self, level, alert, value, target=None, ntype=None, rule=None):  # pylint: disable=unused-argument
+        tmpl = TEMPLATES[ntype]['subject']
+        return tmpl.generate(
+            level=level, reactor=self.reactor, alert=alert, value=value, target=target).strip()
+
     def init_handler(self):
         """ Init configuration here."""
         raise NotImplementedError()
